@@ -1,0 +1,119 @@
+<html>
+
+<head>
+	<title>Slack-desc Genorator</title>
+
+	<link rel="stylesheet" type="text/css" href="style/slackgen.css" />
+
+	<script language="javascript">
+		
+		function genorate()
+		{			
+			var progname = document.slackform.progname.value;
+			var version = document.slackform.version.value;
+			var desc = document.slackform.desc.value;
+			var packager = document.slackform.packager.value;
+			
+			var desc1 = document.slackform.desc1.value;
+			var desc2 = document.slackform.desc2.value;
+			var desc3 = document.slackform.desc3.value;
+			var desc4 = document.slackform.desc4.value;
+			var desc5 = document.slackform.desc5.value;
+			var desc6 = document.slackform.desc6.value;
+			var desc7 = document.slackform.desc7.value;
+			var desc8 = document.slackform.desc8.value;
+			
+			descFrame.document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"style/slackgen.css\" />");
+			
+			descFrame.document.write("<code>");
+
+			descFrame.document.write("# HOW TO EDIT THIS FILE:<br>");
+			descFrame.document.write("# The \"handy ruler\" below makes it easier to edit a package description. Line<br>");
+			descFrame.document.write("# up the first \'|\' above the \':\' following the base package name, and the \'|\'<br>");
+			descFrame.document.write("# on the right side marks the last column you can put a character in. You must<br>");
+			descFrame.document.write("# make exactly 11 lines for the formatting to be correct. It's also<br>");
+			descFrame.document.write("# customary to leave one space after the \':\'.<br>");
+			
+			for (var i = 0; i < progname.length; i++)
+			{
+				descFrame.document.write("&nbsp;");
+			}
+			
+			descFrame.document.write("|-----handy-ruler------------------------------------------------------|<br>");
+			
+			descFrame.document.write(progname + ": " + progname + " " + version + " (" + desc + ")<br>");
+			descFrame.document.write(progname + ": " + "<br>");
+			descFrame.document.write(progname + ": " + desc1 + "<br>");
+			descFrame.document.write(progname + ": " + desc2 + "<br>");
+			descFrame.document.write(progname + ": " + desc3 + "<br>");
+			descFrame.document.write(progname + ": " + desc4 + "<br>");
+			descFrame.document.write(progname + ": " + desc5 + "<br>");
+			descFrame.document.write(progname + ": " + desc6 + "<br>");
+			descFrame.document.write(progname + ": " + desc7 + "<br>");
+			descFrame.document.write(progname + ": " + desc8 + "<br>");
+			descFrame.document.write(progname + ": " + "<br>");
+			descFrame.document.write(progname + ": " + "Package created by " + packager + "<br>");
+
+			descFrame.document.write("</code>");
+		};
+
+		function gon()
+		{
+			descFrame.document.writeln("sdf.html");
+		}
+	</script>
+</head>
+
+<body>
+
+<table align="center" border="0" width="100%" height="100%">
+	<tr>
+		<td width="40%" align="center">
+			<form name="slackform">
+				<p>
+					This is a form to help you generate your slack-desc file.
+				</p>
+				<p>
+					Packager's Name<br>
+					<input type="text" name="packager">
+				</p>
+				<p>
+					Program name<br>
+					<input type="text" size="19" maxlenght="20" name="progname">
+				</p>
+				<p>
+					Program version<br>
+					<input type="text" name="version" size="18" maxlenght="15">
+				</p>
+				<p>
+					Short description:<br>
+					<input type="text" name="desc" size="50" maxlength="49">
+				</p>
+				<p>
+					Description<br>
+					<i>8 lines 60 chars each</i><br>
+					
+					<p><input type="text" name="desc1" size="60" maxlenght="60"></p>
+					<p><input type="text" name="desc2" size="60" maxlenght="60"></p>
+					<p><input type="text" name="desc3" size="60" maxlenght="60"></p>
+					<p><input type="text" name="desc4" size="60" maxlenght="60"></p>
+					<p><input type="text" name="desc5" size="60" maxlenght="60"></p>
+					<p><input type="text" name="desc6" size="60" maxlenght="60"></p>
+					<p><input type="text" name="desc7" size="60" maxlenght="60"></p>
+					<p><input type="text" name="desc8" size="60" maxlenght="60"></p>
+
+					<input type="button" name="submit" value="Genorate" onclick="genorate()"> <input type="reset" value="Reset">
+				</p>
+			</form>
+		</td>
+		<td align="center" width="60%">
+			<iframe id="descFrame" name="descFrame">
+				&nbsp;
+			</iframe>
+		</td>
+	</tr>
+</table>
+
+</body>
+
+</html>

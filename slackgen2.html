@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Slackgen - Slack-desc Genorator</title>
+</head>
+<style>
+	label
+	{
+		display: block;
+	}
+</style>
+
+<body>
+<form id="slackform" action="javascript:alert();">
+	<p>
+		This is a form to help you generate your slack-desc file.
+	</p>
+	<p>
+		<label>Packager's Name</label>
+		<input type="text" id="packager" />
+	</p>
+	<p>
+		<label>Program name</label>
+		<input type="text" size="19" maxlength="20" id="progname" />
+	</p>
+	<p>
+		<label>Program version</label>
+		<input type="text" id="version" size="18" maxlength="15" />
+	</p>
+	<p>
+		<label>Short description</label>
+		<input type="text" id="desc" size="50" maxlength="49" />
+	</p>
+	<p>
+		<label>Description</label>
+		<label id="chars">8 lines of 78 characters</label>
+		
+		<textarea id="desc" rows="8" cols="78"></textarea>
+		<!-- FIXME this may be more intuitive with a text area instead.
+		the text area should have maxrows = 8 and maxcols = to number
+		of characters remaining. The biggest problem with this is
+		splitting the text into it's 8 lines and not just seeing it as
+		one string. -->
+		<input type="text" id="desc1" name="desc1" size="60" maxlength="78" />
+		<input type="text" id="desc2" name="desc2" size="60" maxlength="78" />
+		<input type="text" id="desc3" name="desc3" size="60" maxlength="78" />
+		<input type="text" id="desc4" name="desc4" size="60" maxlength="78" />
+		<input type="text" id="desc5" name="desc5" size="60" maxlength="78" />
+		<input type="text" id="desc6" name="desc6" size="60" maxlength="78" />
+		<input type="text" id="desc7" name="desc7" size="60" maxlength="78" />
+		<input type="text" id="desc8" name="desc8" size="60" maxlength="78" />
+	</p>
+</form>
+<script type="text/javascript">
+	var descChars = 78;
+	var chars = document.getElementById("chars");
+	var progname = document.getElementById("progname");
+	// FIXME changing field by selecting from list does not update
+	progname.onblur= update;
+	progname.onchange= update;
+	progname.onfocus= update;
+	progname.onkeyup = update;
+	progname.onload= update;
+	progname.onreset= update;
+	progname.onselect = update;
+	//progname.on= update;
+	function updateDescChars(len) {
+		chars.firstChild.data = "8 lines of " + len + " characters";
+	}
+
+	// truncate description lines and change maxLength
+	function updateDescLines(len) {
+		/* TODO it may be nice to shift words around if a line is
+		   too long */
+		for (var i = 1; i < 9; i++) {
+			var id = "desc" + i;
+			var line = document.getElementById(id);
+			var txt = line.value;
+			if (txt.length > len) {
+				// FIXME until I learn the substr func
+				var buf = "";
+				for (var j = 0; j < len; j++) {
+					buf += line.value[j];
+				}
+				// end substr
+
+				line.value = buf;
+			}
+
+			line.maxLength = len;
+		}
+	}
+
+	function update() {
+		// calculate number of chars remaining
+		var len = descChars - progname.value.length;
+		updateDescChars(len);
+		updateDescLines(len);
+	}
+</script>
+</body>
+
+</html>
